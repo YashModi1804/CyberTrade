@@ -1,0 +1,16 @@
+/* color: rgb(0, 255, 136); */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
