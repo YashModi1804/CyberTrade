@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/home.css'
 
-export default function Nav(){
+export default function Home(){
   let stockPrice;
   const Nifty50StockBox = () => {
     // State to store the current stock price

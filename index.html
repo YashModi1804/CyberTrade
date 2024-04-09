@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Price Chart</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Create a canvas element for the chart -->
+  <canvas id="stockChart" width="800" height="400"></canvas>
+
+  <script>
+    // Sample data (replace with real-time data)
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    const prices = [100, 120, 110, 130, 125, 140];
+
+    // Initialize a new Chart.js chart
+    const ctx = document.getElementById('stockChart').getContext('2d');
+    const stockChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Stock Price',
+          data: prices,
+          borderColor: 'blue',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Month'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Price (₹)'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
