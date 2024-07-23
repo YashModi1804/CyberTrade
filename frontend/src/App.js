@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
-import Nav from './components/Nav';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Register from './components/Register';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
 
 export default function App() {
-  const [isRegisterClicked, setIsRegisterClicked] = useState(false);
-
   return (
     <div className="container">
-      <BrowserRouter>
-      {/* {isRegisterClicked ? null : <Nav/>} */}
+      <Router>
         <Routes>
-          
-          <Route path='/' element={<Home />} />
-          <Route
-            path='/register'
-            element={<Register />}
-          ></Route>
-         
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

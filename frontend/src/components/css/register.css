@@ -1,56 +1,140 @@
+/* register.css */
+body {
+  background-color: black;
+  color: white;
+  /* font-family: Arial, sans-serif; */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .register-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  }
-  
-  .register-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #fff; /* White text color */
-  }
-  
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    column-gap: 2vi;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #fff; /* White text color */
-  }
-  
-  .form-group input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    color: #fff; /* White text color */
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50; /* Subtle green color */
-    color: #fff; /* White text color */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049; /* Darker green color on hover */
-  }
-  label{
-    padding-right: 6vi;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h2 {
+  color: rgb(0, 255, 140);
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.register-form {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: rgb(0, 255, 140);
+  color:black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color:skyblue;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h2 {
+  color: rgb(0, 255, 140);
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: rgb(0, 255, 140);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+
+.register-link {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.register-link span {
+  margin-right: 5px;
+}
+
+.register-link a {
+  color: rgb(0, 255, 140);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
