@@ -1,0 +1,103 @@
+body {
+  background-color: #1a1a2e;
+  color: #eaeaea;
+  font-family: 'Arial', sans-serif;
+}
+
+.dashboard-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #162447;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  color: #eaeaea;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metrics {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-box {
+  background-color: #0f3460;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  color: #eaeaea;
+}
+
+.portfolio-value h1 {
+  font-size: 24px;
+}
+
+.portfolio-value p {
+  font-size: 30px;
+}
+
+.profit-loss h2 {
+  font-size: 20px;
+}
+
+.profit-loss p {
+  font-size: 24px;
+}
+
+.stocks-table {
+  width: 70%;
+  background-color: #0f3460;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.stocks-table h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.stocks-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stocks-table th, .stocks-table td {
+  border: 1px solid #eaeaea;
+  padding: 10px;
+  text-align: left;
+}
+
+.stocks-table th {
+  background-color: #162447;
+  color: #ffffff;
+}
+
+.stocks-table tr:nth-child(even) {
+  background-color: #1a1a2e;
+}
+
+.stocks-table tr:nth-child(odd) {
+  background-color: #0f3460;
+}
