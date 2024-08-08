@@ -5,6 +5,7 @@ import Register from './components/Register';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Login';
 import Dashboard from './components/dashboard';
+import Transact from './components/transact';
 export default function App() {
   return (
     <div className="container">
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/transact" element={<Transact />} />
         </Routes>
       </Router>
     </div>
