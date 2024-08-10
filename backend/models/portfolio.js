@@ -1,20 +1,23 @@
-// models/Portfolio.js
 import mongoose from 'mongoose'
-
-const portfolioSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+const PortfolioSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  balance: { type: Number, required: true, default: 0 },
   stocks: [
     {
-      stock: { type: mongoose.Schema.Types.ObjectId, ref: 'Stock', required: true },
+      name: { type: String, required: true },
       quantity: { type: Number, required: true },
-      boughtPrice: { type: Number, required: true }, // Price at which the stock was bought
-      currentPrice: { type: Number, required: true }, // Current price of the stock
-      overallProfitLoss: { type: Number, required: true }, // Overall profit/loss for this stock
-      todaysProfitLoss: { type: Number, required: true }, // Today's profit/loss for this stock
+      priceBought: { type: Number, required: true },
+      totalPrice: {
+        type: Number,
+        required: true,
+        default: function () {
+          return this.quantity * this.priceBought;
+        },
+      },
     },
   ],
-}, { timestamps: true });
+});
 
-const Portfolio = mongoose.model('Portfolio', portfolioSchema);
+const Portfolio = mongoose.model('Portfolio', PortfolioSchema);
 
-module.exports = Portfolio;
+export default Portfolio;
