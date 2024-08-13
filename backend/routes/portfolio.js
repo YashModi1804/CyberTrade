@@ -3,6 +3,6 @@ import portfolio from '../controllers/portfolio.js';
 
 const router = express.Router();
 
-router.get('/portfolio/:username', portfolio);
+router.get('/:username', portfolio);
 
 export default router;

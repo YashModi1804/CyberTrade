@@ -1,6 +1,6 @@
 import express from 'express';
-import buyStock from '../controllers/buy.js';
+import sellStock from '../controllers/sell.js'; 
 const router = express.Router();
-router.post('/:username', buyStock);
+router.post('/:username', sellStock);
 
 export default router;

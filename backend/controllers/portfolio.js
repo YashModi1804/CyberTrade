@@ -3,10 +3,15 @@ import Portfolio from '../models/portfolio.js';
 const getPortfolio = async (req, res) => {
   try {
     const { username } = req.params;
-    const portfolio = await Portfolio.findOne({ username });
+    let portfolio = await Portfolio.findOne({ username });
 
     if (!portfolio) {
-      return res.status(404).json({ message: 'Portfolio not found' });
+      portfolio = new Portfolio({
+        username,
+        balance: 100000,
+        stocks: []
+      });
+      await portfolio.save();
     }
 
     res.status(200).json(portfolio);
