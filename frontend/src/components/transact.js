@@ -3,7 +3,7 @@ import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 import Toastify from 'toastify-js';
 
-const ALPHA_VANTAGE_API_KEY = 'TMLYFP0EL1FSYKSZ';  // Replace with your actual API key
+const MARKETSTACK_API_KEY = 'ffd6aec9ae3e02bedc60e9057a7b5c15';  // Replace with your actual API key
 
 const TransactionPage = () => {
   const [query, setQuery] = useState('');
@@ -16,20 +16,24 @@ const TransactionPage = () => {
   // Fetch suggestions based on user input
   const getSuggestions = async (value) => {
     try {
-      const response = await axios.get('https://www.alphavantage.co/query', {
+      const response = await axios.get('https://api.marketstack.com/v1/tickers', {
         params: {
-          function: 'SYMBOL_SEARCH',
-          keywords: value,
-          apikey: ALPHA_VANTAGE_API_KEY,
+          access_key: MARKETSTACK_API_KEY,
+          search: value,
+          limit: 100,  // Adjust if needed
         },
       });
 
-      const results = response.data.bestMatches || [];
+      // Filter NSE results and limit to top 5
+      const results = response.data.data
+        .filter(stock => stock.stock_exchange.acronym === 'NSE')
+        .slice(0, 5);
+
       // If no results, add a "No results found" entry
-      setSuggestions(results.length > 0 ? results : [{ '1. symbol': '', '2. name': 'No results found' }]);
+      setSuggestions(results.length > 0 ? results : [{ symbol: '', name: 'No results found' }]);
     } catch (error) {
       console.error('Error fetching search results', error);
-      setSuggestions([{ '1. symbol': '', '2. name': 'No results found' }]);
+      setSuggestions([{ symbol: '', name: 'No results found' }]);
     }
   };
 
@@ -42,25 +46,26 @@ const TransactionPage = () => {
   };
 
   const onSuggestionSelected = async (event, { suggestion }) => {
-    if (suggestion['2. name'] === 'No results found') {
+    if (suggestion.name === 'No results found') {
       // Prevent action if "No results found" is selected
       return;
     }
 
     try {
-      const response = await axios.get('https://www.alphavantage.co/query', {
+      // Fetch real-time stock data if available
+      const response = await axios.get(`https://api.marketstack.com/v1/tickers/${suggestion.symbol}/intraday/latest`, {
         params: {
-          function: 'GLOBAL_QUOTE',
-          symbol: suggestion['1. symbol'],
-          apikey: ALPHA_VANTAGE_API_KEY,
+          access_key: MARKETSTACK_API_KEY,
         },
       });
 
+      const lastPrice = response.data.data && response.data.data.length > 0 ? response.data.data[0].last : 'N/A';
+      
       setSelectedStock({
-        symbol: suggestion['1. symbol'],
-        price: response.data['Global Quote']['05. price'],
+        symbol: suggestion.symbol,
+        price: lastPrice,  // Get the latest price or set to 'N/A'
       });
-      setQuery(suggestion['1. symbol']);
+      setQuery(suggestion.symbol);
     } catch (error) {
       console.error('Error fetching stock data', error);
     }
@@ -78,7 +83,8 @@ const TransactionPage = () => {
       }).showToast();
       return;
     }
-
+  
+    // Implement transaction logic here
     Toastify({
       text: `Successfully ${isBuying ? 'bought' : 'sold'} ${quantity} of ${selectedStock.symbol} at target price of ${targetPrice}`,
       duration: 3000,
@@ -87,7 +93,7 @@ const TransactionPage = () => {
       position: 'right',
       backgroundColor: '#4caf50',
     }).showToast();
-
+  
     // Reset form
     setQuery('');
     setSuggestions([]);
@@ -95,13 +101,17 @@ const TransactionPage = () => {
     setQuantity('');
     setTargetPrice('');
   };
+  
 
-  const renderSuggestion = (suggestion) => (
-    <div>
-      {suggestion['1. symbol'] || ''} - {suggestion['2. name']}
-    </div>
-  );
-
+  const renderSuggestion = (suggestion, { query }) => {
+    const text = `${suggestion.symbol} - ${suggestion.name}`;
+    return (
+      <div className="suggestion-container">
+        {text}
+      </div>
+    );
+  };
+  
   const inputProps = {
     placeholder: 'Search for a stock...',
     value: query,
@@ -115,38 +125,39 @@ const TransactionPage = () => {
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={(suggestion) => suggestion['1. symbol']}
+        getSuggestionValue={(suggestion) => suggestion.symbol}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
       />
       {selectedStock && (
-        <div>
-          <h2>{selectedStock.symbol}</h2>
-          <p>Current Price: {selectedStock.price}</p>
-          <div>
-            <button onClick={() => setIsBuying(true)}>Buy</button>
-            <button onClick={() => setIsBuying(false)}>Sell</button>
-          </div>
-          <div>
-            <input
-              type="number"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              placeholder="Quantity"
-            />
-            <input
-              type="number"
-              value={targetPrice}
-              onChange={(e) => setTargetPrice(e.target.value)}
-              placeholder="Target Price"
-            />
-            <button onClick={handleTransaction}>
-              {isBuying ? 'Buy' : 'Sell'}
-            </button>
-          </div>
-        </div>
-      )}
+  <div>
+    <h2>{selectedStock.symbol}</h2>
+    <p>Current Price: {selectedStock.price}</p>
+    <div>
+      <button onClick={() => setIsBuying(true)}>Buy</button>
+      <button onClick={() => setIsBuying(false)}>Sell</button>
+    </div>
+    <div>
+      <input
+        type="number"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
+        placeholder="Quantity"
+      />
+      <input
+        type="number"
+        value={targetPrice}
+        onChange={(e) => setTargetPrice(e.target.value)}
+        placeholder="Target Price"
+      />
+      <button onClick={handleTransaction}>
+        {isBuying ? 'Buy' : 'Sell'}
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

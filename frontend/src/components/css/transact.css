@@ -1,98 +1,134 @@
-/* Styles for the TransactionPage component */
-.transaction-page {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .search-bar button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .search-bar button:hover {
-    background-color: #0056b3;
-  }
-  
-  .share-details {
-    padding: 15px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .share-details h2 {
-    margin-top: 0;
-    color: #333;
-  }
-  
-  .share-details p {
-    margin: 10px 0;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  input[type="number"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  textarea {
-    resize: vertical;
-    height: 100px;
-  }
-  
-  button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #0056b3;
-  }
-  
-  button:active:not(:disabled) {
-    background-color: #004494;
-  }
-  
+/* TransactionPage.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #2c2c2c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  width: 400px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.autosuggest__input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: #3c3c3c;
+  color: #ffffff;
+}
+
+.suggestion {
+  padding: 10px;
+  border-bottom: 1px solid #4c4c4c;
+}
+
+.suggestion:last-child {
+  border-bottom: none;
+}
+
+.suggestion:hover {
+  background-color: #4c4c4c;
+  cursor: pointer;
+}
+
+.stock-details {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stock-details h2 {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.stock-details p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-group button:hover {
+  background-color: #45a049;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group input {
+  width: 48%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3c3c3c;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #2196f3;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #1976d2;
+}
+
+
+/* Add this to your CSS file */
+.suggestion-container {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+.suggestion-container:hover {
+  background-color: #e0e0e0;
+}
+
+.suggestion-container.selected {
+  background-color: #d0d0d0;
+}
