@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 import Toastify from 'toastify-js';
+import './css/transact.css';
 
-const MARKETSTACK_API_KEY = 'ffd6aec9ae3e02bedc60e9057a7b5c15';  // Replace with your actual API key
+const MARKETSTACK_API_KEY = 'b162e11d53f8907c6d4d68a6ac0083e3';  // Replace with your actual API key
 
 const TransactionPage = () => {
   const [query, setQuery] = useState('');
@@ -83,7 +84,7 @@ const TransactionPage = () => {
       }).showToast();
       return;
     }
-  
+
     // Implement transaction logic here
     Toastify({
       text: `Successfully ${isBuying ? 'bought' : 'sold'} ${quantity} of ${selectedStock.symbol} at target price of ${targetPrice}`,
@@ -93,7 +94,7 @@ const TransactionPage = () => {
       position: 'right',
       backgroundColor: '#4caf50',
     }).showToast();
-  
+
     // Reset form
     setQuery('');
     setSuggestions([]);
@@ -101,9 +102,8 @@ const TransactionPage = () => {
     setQuantity('');
     setTargetPrice('');
   };
-  
 
-  const renderSuggestion = (suggestion, { query }) => {
+  const renderSuggestion = (suggestion) => {
     const text = `${suggestion.symbol} - ${suggestion.name}`;
     return (
       <div className="suggestion-container">
@@ -111,7 +111,7 @@ const TransactionPage = () => {
       </div>
     );
   };
-  
+
   const inputProps = {
     placeholder: 'Search for a stock...',
     value: query,
@@ -119,45 +119,71 @@ const TransactionPage = () => {
   };
 
   return (
-    <div>
-      <h1>Transaction Page</h1>
+    <div className="transaction-container">
+      <h2>Symbol</h2>
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={(suggestion) => suggestion.symbol}
+        getSuggestionValue={suggestion => suggestion.symbol}
         renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
+        inputProps={{
+          ...inputProps,
+          className: "symbol-input",
+        }}
         onSuggestionSelected={onSuggestionSelected}
       />
-      {selectedStock && (
-  <div>
-    <h2>{selectedStock.symbol}</h2>
-    <p>Current Price: {selectedStock.price}</p>
-    <div>
-      <button onClick={() => setIsBuying(true)}>Buy</button>
-      <button onClick={() => setIsBuying(false)}>Sell</button>
-    </div>
-    <div>
-      <input
-        type="number"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-        placeholder="Quantity"
-      />
-      <input
-        type="number"
-        value={targetPrice}
-        onChange={(e) => setTargetPrice(e.target.value)}
-        placeholder="Target Price"
-      />
-      <button onClick={handleTransaction}>
-        {isBuying ? 'Buy' : 'Sell'}
-      </button>
-    </div>
-  </div>
-)}
 
+      <div className="form-row">
+        <div className="form-group">
+          <label>Action</label>
+          <select
+            className="form-control"
+            onChange={(e) => setIsBuying(e.target.value === 'Buy')}
+          >
+            <option>Buy</option>
+            <option>Sell</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Quantity</label>
+          <div className="quantity-group">
+            <input
+              type="number"
+              className="quantity-input"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+            <button className="show-max-button">
+              Show Max
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-row">
+        <div className="form-group">
+          <label>Order Type</label>
+          <select className="form-control">
+            <option>Market</option>
+            <option>Limit</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Duration</label>
+          <select className="form-control">
+            <option>Day Only</option>
+            <option>Good Till Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="button-group">
+        <button className="clear-button" onClick={() => handleTransaction(false)}>CLEAR</button>
+        <button className="preview-button" onClick={handleTransaction}>PREVIEW ORDER</button>
+      </div>
     </div>
   );
 };

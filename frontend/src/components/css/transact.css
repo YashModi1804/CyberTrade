@@ -1,134 +1,169 @@
-/* TransactionPage.css */
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #1c1c1c;
-  color: #ffffff;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Adjusting container size */
+.transaction-container {
+  width: 500px; /* Increase the width for a larger container */
+  padding: 20px; /* Add padding for better spacing */
+  background-color: #f5f5f5; /* Background color */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
-.container {
-  background-color: #2c2c2c;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-  width: 400px;
+/* Style for the inputs */
+.transaction-container input[type="text"],
+.transaction-container select {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding inside inputs */
+  margin: 10px 0; /* Spacing between inputs */
+  font-size: 16px; /* Bigger text size for better readability */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 4px; /* Rounded corners */
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+/* Style for the buttons */
+.transaction-container button {
+  width: 48%; /* Make buttons take nearly half width */
+  padding: 10px; /* Button padding */
+  font-size: 16px; /* Bigger text size */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
-.autosuggest__input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-bottom: 20px;
-  background-color: #3c3c3c;
-  color: #ffffff;
+/* Specific button styles */
+.transaction-container button.clear {
+  background-color: #ccc; /* Gray color for Clear button */
+  color: black; /* Text color */
 }
 
-.suggestion {
-  padding: 10px;
-  border-bottom: 1px solid #4c4c4c;
+.transaction-container button.preview {
+  background-color: #007bff; /* Blue color for Preview button */
+  color: white; /* White text */
 }
 
-.suggestion:last-child {
-  border-bottom: none;
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .transaction-container {
+      width: 100%; /* Full width on smaller screens */
+  }
+
+  .transaction-container button {
+      width: 100%; /* Full width buttons on smaller screens */
+      margin-bottom: 10px; /* Spacing at bottom */
+  }
 }
 
-.suggestion:hover {
-  background-color: #4c4c4c;
-  cursor: pointer;
-}
 
-.stock-details {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.stock-details h2 {
-  margin: 10px 0;
-  font-size: 20px;
-}
-
-.stock-details p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.button-group button {
-  background-color: #4caf50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button-group button:hover {
-  background-color: #45a049;
+h2 {
+  margin-bottom: 10px;
+  color: #000000;
 }
 
 .input-group {
   display: flex;
-  justify-content: space-between;
-}
-
-.input-group input {
-  width: 48%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #3c3c3c;
-  color: #ffffff;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.submit-button {
-  width: 100%;
-  background-color: #2196f3;
-  color: #ffffff;
+.symbol-input {
+  flex: 1;
   padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-button {
+  padding: 10px;
+  margin-left: 5px;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
+  color: white;
 }
 
-.submit-button:hover {
-  background-color: #1976d2;
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 10px;
+}
 
-/* Add this to your CSS file */
-.suggestion-container {
-  cursor: pointer;
+.form-group:last-child {
+  margin-right: 0;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+label i {
+  margin-left: 5px;
+  color: #3498db;
+}
+
+.form-control {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-  background-color: #f9f9f9;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
 }
 
-.suggestion-container:hover {
-  background-color: #e0e0e0;
+.quantity-group {
+  display: flex;
+  align-items: center;
 }
 
-.suggestion-container.selected {
-  background-color: #d0d0d0;
+.quantity-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.show-max-button {
+  padding: 10px;
+  margin-left: 5px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clear-button {
+  padding: 10px 20px;
+  background-color: #bdc3c7;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #2c3e50;
+}
+
+.preview-button {
+  padding: 10px 20px;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
 }
